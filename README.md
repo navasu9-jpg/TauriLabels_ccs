@@ -1,5 +1,17 @@
-# Firebase Studio
+# TauriLabels
 
-This is the repository for the card-generator-ccs project.
+This repository contains a desktop application built with [Tauri](https://tauri.app/) and [Next.js](https://nextjs.org/).
 
-To get started, take a look at src/app/page.tsx.
+## Development
+
+- `npm run dev` – start the Next.js development server
+- `npm run tauri` – run Tauri CLI commands (e.g., `npm run tauri dev`)
+
+## Production
+
+Build the optimized application and Tauri bundle:
+
+```bash
+npm run build
+npm run tauri build
+```
