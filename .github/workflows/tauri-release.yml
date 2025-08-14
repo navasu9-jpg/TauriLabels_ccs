@@ -1,32 +1,37 @@
-name: tauri-release
+name: tauri-windows
 on:
-  workflow_dispatch:
-  push:
-    tags:
-      - 'v*.*.*'
+  workflow_dispatch: {}   # run manually
 
 jobs:
   build:
-    strategy:
-      matrix: { os: [macos-latest, windows-latest, ubuntu-latest] }
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+
       - uses: actions/setup-node@v4
-        with: { node-version: '20' }
+        with:
+          node-version: '20'
+          cache: 'npm'        # change to 'pnpm' or 'yarn' if needed
 
-      - name: Linux system deps
-        if: runner.os == 'Linux'
+      # If you use pnpm or yarn, uncomment ONE of these:
+      # - uses: pnpm/action-setup@v4
+      #   with: { version: 9 }
+      # - run: corepack enable && corepack prepare yarn@stable --activate
+
+      - name: Install deps
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev
+          npm ci
+          npm i -D @tauri-apps/cli
 
-      - run: npm ci
-      - run: npx tauri build   # requires @tauri-apps/cli in devDependencies
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Build with Tauri
+        uses: tauri-apps/tauri-action@v0
+        with:
+          args: build
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ runner.os }}-artifacts
-          path: src-tauri/target/release/bundle/**/*
+          name: windows-artifacts
+          path: src-tauri/target/release/bundle/windows/**/*
 
