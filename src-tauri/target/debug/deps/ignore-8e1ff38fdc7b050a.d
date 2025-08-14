@@ -1,0 +1,12 @@
+/workspaces/TauriLabels/src-tauri/target/debug/deps/ignore-8e1ff38fdc7b050a.d: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/default_types.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/dir.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/gitignore.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/overrides.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/pathutil.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/types.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/walk.rs
+
+/workspaces/TauriLabels/src-tauri/target/debug/deps/libignore-8e1ff38fdc7b050a.rmeta: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/default_types.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/dir.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/gitignore.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/overrides.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/pathutil.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/types.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/walk.rs
+
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/lib.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/default_types.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/dir.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/gitignore.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/overrides.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/pathutil.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/types.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ignore-0.4.23/src/walk.rs:

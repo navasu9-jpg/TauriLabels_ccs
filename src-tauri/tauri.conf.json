@@ -1,11 +1,13 @@
 {
   "$schema": "https://schema.tauri.app/config/1",
-  "productName": "TauriLabels",
-  "version": "0.1.0",
+  "package": {
+    "productName": "TauriLabels",
+    "version": "0.1.0"
+  },
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
-    "devPath": "http://localhost:9002",
+    "devPath": "http://localhost:3002",
     "distDir": "../out"
   },
   "tauri": {
@@ -18,3 +20,4 @@
     ]
   }
 }
+
