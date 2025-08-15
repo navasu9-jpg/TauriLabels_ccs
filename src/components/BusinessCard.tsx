@@ -3,7 +3,6 @@
 
 import type { FC } from 'react';
 import QRCode from 'qrcode.react';
-import Image from 'next/image';
 import type { CardConfig, CsvData } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -62,8 +61,8 @@ export const BusinessCard: FC<BusinessCardProps> = ({ data, config, isPrint = fa
             </div>
           </div>
             <div className="flex flex-col items-end text-right">
-                <div className="relative w-20 h-10">
-                    <Image src="/logo.png" alt="Company Logo" fill className="object-contain" />
+                <div className="w-20 h-10">
+                    <img src="logo.png" alt="Company Logo" className="object-contain w-full h-full" />
                 </div>
                 <div className="text-[0.6em] mt-2 break-words">
                     <p className="text-gray-500">Operations Planning System.</p>
