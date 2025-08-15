@@ -1,5 +1,4 @@
-
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -74,6 +73,7 @@ export function CardGenerator() {
 
   const handlePrint = () => {
     if (parsedData.data.length > 0) {
+      // Use the browser's print dialog which works for both web and Tauri builds
       window.print();
     } else {
       toast({
@@ -83,16 +83,23 @@ export function CardGenerator() {
       });
     }
   };
-  
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const text = e.target?.result as string;
+        let text = (e.target?.result as string) || '';
+        // Trim whitespace/newlines, remove BOM and surrounding quotes
+        text = text.replace(/^\uFEFF/, '').trim();
+        if (text.startsWith('"') && text.endsWith('"')) {
+          text = text.slice(1, -1);
+        }
         setValue('csvText', text, { shouldDirty: true, shouldValidate: true });
       };
       reader.readAsText(file);
+      // Allow uploading the same file again after clearing
+      event.target.value = '';
     }
   };
 
@@ -123,9 +130,7 @@ export function CardGenerator() {
           <PreviewPanel data={parsedData.data} config={config} />
         </div>
       </div>
-      <div className="print-container">
-        <PrintLayout data={parsedData.data} config={config} />
-      </div>
+      <PrintLayout data={parsedData.data} config={config} />
     </FormProvider>
   );
 }

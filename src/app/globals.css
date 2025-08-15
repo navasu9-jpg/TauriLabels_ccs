@@ -95,12 +95,24 @@ body {
 }
 
 
+@page {
+  size: 210mm 297mm;
+  margin: 0;
+}
+
 @media print {
-  body > *:not(.print-container) {
-    display: none !important;
+  body * {
+    visibility: hidden;
   }
   .print-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: block !important;
+    visibility: visible;
+  }
+  .print-container * {
+    visibility: visible;
   }
   body {
     -webkit-print-color-adjust: exact;
@@ -108,13 +120,6 @@ body {
   }
   .no-print {
     display: none !important;
-  }
-  .print-page {
-
-  }
-  @page {
-    size: A4;
-    margin: 0;
   }
 }
 
