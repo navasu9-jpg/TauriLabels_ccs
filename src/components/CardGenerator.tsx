@@ -71,10 +71,10 @@ export function CardGenerator() {
     }
   }, [csvText, toast, isMounted]);
 
-  const handlePrint = async () => {
+  const handlePrint = () => {
     if (parsedData.data.length > 0) {
-      const { appWindow } = await import('@tauri-apps/api/window');
-      await (appWindow as any).print();
+      // Use the browser's print dialog which works for both web and Tauri builds
+      window.print();
     } else {
       toast({
         variant: 'destructive',
@@ -83,17 +83,23 @@ export function CardGenerator() {
       });
     }
   };
-  
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        let text = e.target?.result as string;
-        text = text.replace(/^"|"$/g, '').replace(/^\uFEFF/, '');
+        let text = (e.target?.result as string) || '';
+        // Trim whitespace/newlines, remove BOM and surrounding quotes
+        text = text.replace(/^\uFEFF/, '').trim();
+        if (text.startsWith('"') && text.endsWith('"')) {
+          text = text.slice(1, -1);
+        }
         setValue('csvText', text, { shouldDirty: true, shouldValidate: true });
       };
       reader.readAsText(file);
+      // Allow uploading the same file again after clearing
+      event.target.value = '';
     }
   };
 
