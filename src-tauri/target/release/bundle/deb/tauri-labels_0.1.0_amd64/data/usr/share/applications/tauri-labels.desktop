@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=
+Comment=TauriLabels app
+Exec=tauri-labels
+Icon=tauri-labels
+Name=TauriLabels
+Terminal=false
+Type=Application

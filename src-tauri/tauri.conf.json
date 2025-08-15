@@ -12,12 +12,19 @@
   },
   "tauri": {
     "windows": [
-      {
-        "title": "TauriLabels",
-        "width": 800,
-        "height": 600
-      }
-    ]
+      { "title": "TauriLabels", "width": 800, "height": 600 }
+    ],
+    "bundle": {
+      "active": true,
+      "identifier": "ae.capitalcatering.taurilabels",
+      "targets": ["appimage", "deb"],
+      "icon": [
+  "icons/icon.png",
+  "icons/128x128.png",
+  "icons/256x256.png",
+  "icons/512x512.png"
+]
+    }
   }
 }
 

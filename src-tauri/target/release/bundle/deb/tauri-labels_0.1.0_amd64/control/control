@@ -1,0 +1,9 @@
+Package: tauri-labels
+Version: 0.1.0
+Architecture: amd64
+Installed-Size: 7368
+Maintainer: TauriLabels Developers
+Priority: optional
+Depends: libwebkit2gtk-4.0-37, libgtk-3-0
+Description: TauriLabels app
+ (none)
