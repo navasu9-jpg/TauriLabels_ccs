@@ -1,11 +1,9 @@
-
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Papa from 'papaparse';
-import { appWindow } from '@tauri-apps/api/window';
 import { useToast } from "@/hooks/use-toast";
 import { defaultConfig } from '@/lib/constants';
 import { formSchema, type CardConfig, type CsvData } from '@/lib/types';
@@ -75,6 +73,7 @@ export function CardGenerator() {
 
   const handlePrint = async () => {
     if (parsedData.data.length > 0) {
+      const { appWindow } = await import('@tauri-apps/api/window');
       await (appWindow as any).print();
     } else {
       toast({
