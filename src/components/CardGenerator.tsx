@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Papa from 'papaparse';
+import { appWindow } from '@tauri-apps/api/window';
 import { useToast } from "@/hooks/use-toast";
 import { defaultConfig } from '@/lib/constants';
 import { formSchema, type CardConfig, type CsvData } from '@/lib/types';
@@ -72,9 +73,9 @@ export function CardGenerator() {
     }
   }, [csvText, toast, isMounted]);
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
     if (parsedData.data.length > 0) {
-      window.print();
+      await (appWindow as any).print();
     } else {
       toast({
         variant: 'destructive',
@@ -89,7 +90,8 @@ export function CardGenerator() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const text = e.target?.result as string;
+        let text = e.target?.result as string;
+        text = text.replace(/^"|"$/g, '').replace(/^\uFEFF/, '');
         setValue('csvText', text, { shouldDirty: true, shouldValidate: true });
       };
       reader.readAsText(file);
@@ -123,9 +125,7 @@ export function CardGenerator() {
           <PreviewPanel data={parsedData.data} config={config} />
         </div>
       </div>
-      <div className="print-container">
-        <PrintLayout data={parsedData.data} config={config} />
-      </div>
+      <PrintLayout data={parsedData.data} config={config} />
     </FormProvider>
   );
 }

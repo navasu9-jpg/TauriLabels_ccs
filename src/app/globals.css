@@ -96,8 +96,12 @@ body {
 
 
 @media print {
-  body > *:not(.print-container) {
-    display: none !important;
+  body * {
+    visibility: hidden;
+  }
+  .print-container,
+  .print-container * {
+    visibility: visible;
   }
   .print-container {
     display: block !important;
