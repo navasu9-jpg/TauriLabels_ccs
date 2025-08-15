@@ -1,37 +1,40 @@
-name: tauri-windows
+name: Tauri Windows build
+
 on:
-  workflow_dispatch: {}   # run manually
+  workflow_dispatch: {}
+  push:
+    tags: ["v*.*.*"]   # run when you push a tag like v0.1.0
 
 jobs:
-  build:
+  build-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'        # change to 'pnpm' or 'yarn' if needed
+          node-version: "20"
+          cache: "npm"
 
-      # If you use pnpm or yarn, uncomment ONE of these:
-      # - uses: pnpm/action-setup@v4
-      #   with: { version: 9 }
-      # - run: corepack enable && corepack prepare yarn@stable --activate
+      - name: Setup Rust (MSVC)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Install NSIS (for .exe installer)
+        run: choco install nsis -y
 
       - name: Install deps
-        run: |
-          npm ci
-          npm i -D @tauri-apps/cli
+        run: npm ci
 
-      - uses: dtolnay/rust-toolchain@stable
+      - name: Build Tauri (NSIS)
+        run: npm run tauri build -- --bundles nsis
 
-      - name: Build with Tauri
-        uses: tauri-apps/tauri-action@v0
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          args: build
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: windows-artifacts
-          path: src-tauri/target/release/bundle/**
-
+          name: tauri-windows
+          path: |
+            src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/release/tauri_labels.exe
